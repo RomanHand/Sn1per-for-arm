@@ -95,6 +95,21 @@ To install Sn1per using an AWS EC2 instance:
     sudo docker run -it sn1per-kali-linux /bin/bash
     ```
 
+### Kali Linux-based Sn1per for ARM64
+
+1. Build the container
+
+    ```bash
+    sudo docker pull kalilinux kali-last-release:arm64
+    sudo docker build . -f Dockerfile-arm -t sn1per-arm
+    ```
+
+1. Run the container
+
+    ```bash
+    sudo docker run -it sn1per-kali-linux:arm64 /bin/bash
+    ```
+
 ### BlackArch-based Sn1per
 
 1. Run the Docker Compose file

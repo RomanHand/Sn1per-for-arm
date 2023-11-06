@@ -326,9 +326,16 @@ wget https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/vulners.ns
 
 # GOBUSTER INSTALLER
 echo -e "$OKBLUE[*]$RESET Installing GoBuster...$RESET"
-wget https://github.com/OJ/gobuster/releases/download/v3.0.1/gobuster-linux-amd64.7z -O /tmp/gobuster.7z
-cd /tmp/
-7z e gobuster.7z
+arch=$(uname -m)
+if [[ "$arch" == "aarch64" || "$arch" == "arm64" ]]; then
+  wget https://github.com/OJ/gobuster/releases/download/v3.6.0/gobuster_Linux_arm64.tar.gz -O /tmp/gobuster.tar.gz
+  cd /tmp/
+  tar -xf /tmp/gobuster.tar.gz
+elif [[ "$arch" == "x86_64" ]]; then
+  wget https://github.com/OJ/gobuster/releases/download/v3.0.1/gobuster-linux-amd64.7z -O /tmp/gobuster.7z
+  cd /tmp/
+  7z e gobuster.7z
+fi
 chmod +rx gobuster
 mv gobuster /usr/bin/gobuster
 
